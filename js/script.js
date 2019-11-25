@@ -4,10 +4,13 @@ document.getElementById('test-button').addEventListener('click', function(){
   });
 
   const titleClickHandler = function(event){
+    
+    event.preventDefault();
+    
     const clickedElement = this;
     
     activeLink.classList.add('active');
-    
+
     console.log(event);
 
   /* [DONE] remove class 'active' from all article links  */
@@ -32,11 +35,23 @@ document.getElementById('test-button').addEventListener('click', function(){
 
   /* get 'href' attribute from the clicked link */
 
+  const articleSelector = document.querySelectorAll('href');
+
+  clickedElement.getAttribute('href')
+
+  console.log('articleSelector', clickedElement);
+
   /* find the correct article using the selector (value of 'href' attribute) */
+
+  const targetArticle = document.querySelector('href');
+
+  console.log('targetArticle',clickedElement);
 
   /* add class 'active' to the correct article */
   }
   
+  targetArticle.classList.add('active');
+
   const links = document.querySelectorAll('.titles a');
   
   for(let link of links){
