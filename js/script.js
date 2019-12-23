@@ -319,7 +319,7 @@
 
     /* find all articles before optAuthorsListSelector */
 
-    const articles = document.querySelectorAll(optAuthorsListSelector);
+    const articles = document.querySelectorAll(optArticleSelector);
 
     /* START LOOP: for every author: */
 
@@ -327,7 +327,7 @@
 
       /* find author wrapper */
 
-      const authorList = article.querySelector(optArticleAuthorSelector);
+      const authorList = document.querySelector('.authors');
 
       /* make html variable with empty string */
 
@@ -370,11 +370,16 @@
 
     /* START LOOP: for each author */
 
-    for (let author in articleAuthors) {
+    for (let article of articles) {
 
       /* generate HTML of the link */
 
-      allAuthorsHTML += '<li><a href="#author-' + author + '">' +  author + ' (' + allAuthors[author] + ')' + '</a></li>';
+      const articleAuthor = article.getAttribute('data-authors');
+
+      const linkHTML = '<li><a href="#author-' + articleAuthor + '"<span>' + articleAuthor + '</span></a></li> ';
+            html = html + linkHTML;
+
+      //allAuthorsHTML += '<li><a href="#author-' + author + '">' +  author + ' (' + allAuthors[author] + ')' + '</a></li>';
       
       /* add generated code to html variable */
 
@@ -385,7 +390,7 @@
 
     /* insert HTML of all the links into the tags wrapper */
 
-    authorList.innerHTML = html;
+    authorList.innerHTML = authorList.innerHTML + linkHTML;
 
     /* END LOOP: for every author: */
   }
