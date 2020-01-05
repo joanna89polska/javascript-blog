@@ -232,7 +232,7 @@
     /* [NEW] create variable for all links HTML code */
 
     const tagsParams = calculateTagsParams(allTags);
-    console.log('tagsParams:', tagsParams)
+    console.log('tagsParams:', tagsParams);
 
     //let allTagsHTML = '';
     const allTagsData = { tags: [] };
@@ -241,7 +241,7 @@
     for (let tag in allTags) {
 
       /* [NEW] generate code of a link and add it to allTagsHTML */
-      const tagLinkHTML = '<li>' + calculateTagClass(allTags[tag], tagsParam) + '<li>';
+      const tagLinkHTML = '<li>' + calculateTagClass(allTags[tag], tagsParams) + '<li>';
       console.log('tagLinkHTML:', tagLinkHTML);
 
       //allTagsHTML += tagLinkHTML;
@@ -365,11 +365,11 @@
 
       /* generate HTML of the link */
 
-      const linkHTMLData = { id: articleAuthor, title: articleAuthor };
-      const LinkHTML = templates.authorLink(linkHTMLData);
+      const linkHTMLData = { id: articleAuthors, title: articleAuthors };
+      const linkHTML = templates.authorLink(linkHTMLData);
 
       /* add generated code to html variable */
-      html = html + authorHTML;
+      //html = html + authorHTML;
 
       authorList.innerHTML = authorList.innerHTML + linkHTML;
 
@@ -377,13 +377,14 @@
 
       if (!allAuthors.hasOwnProperty(articleAuthors)) {
 
+        console.log(articleAuthors);
         /* [NEW add generated code to allAuthors array] */
         allAuthors[articleAuthors] = 1;
       } else {
         allAuthors[articleAuthors]++;
       }
       /* insert HTML of all the links into the tags wrapper */
-      authorList.innerHTML = html;
+      //authorList.innerHTML = html;
 
       /* END LOOP: for every article: */
     }
@@ -398,7 +399,9 @@
 
     /* START LOOP: for each authors on allAuthors */
 
-    for (let author of allAuthors) {
+    console.log(allAuthors);
+
+    for (let author in allAuthors) {
 
       /* generate HTML of the link */
 
